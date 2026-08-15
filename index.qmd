@@ -1,7 +1,12 @@
 ---
-title: "aprender-analise-de-dados-sociais"
+title: "Análise de Dados Sociais"
+subtitle: "Aprenda de um jeito diferente"
+page-layout: full
 ---
 
-This is a Quarto website.
+::: {.hero-banner}
+Bem-vindo ao portal de trilhas interativas de Análise de Dados Sociais com R.
+:::
 
-To learn more about Quarto websites visit <https://quarto.org/docs/websites>.
+## Escolha sua Trilha de Aprendizado
+...

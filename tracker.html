@@ -1,0 +1,88 @@
+<script>
+(function() {
+  function initTracker() {
+    const storageKey = "quarto_completed_pages";
+    let completedPages = JSON.parse(localStorage.getItem(storageKey) || "[]");
+
+    // Normaliza o nome do arquivo atual (ex: "/intro-dplyr.html" -> "intro-dplyr")
+    function cleanFilename(path) {
+      if (!path) return "";
+      let name = path.split("/").pop() || "index";
+      return name.replace(/\.(html|qmd)$/, "").replace(/^$/, "index");
+    }
+
+    const currentFile = cleanFilename(window.location.pathname);
+
+    // Seleciona todos os links da barra lateral do Quarto
+    const sidebarLinks = document.querySelectorAll("#quarto-sidebar .sidebar-link, .sidebar-navigation .sidebar-link");
+
+    if (!sidebarLinks.length) return;
+
+    sidebarLinks.forEach(link => {
+      const linkFile = cleanFilename(link.getAttribute("href"));
+      const isRead = completedPages.includes(linkFile);
+      const isCurrent = linkFile === currentFile;
+
+      // Cria ou reutiliza o elemento de badge
+      let badge = link.querySelector(".status-badge");
+      if (!badge) {
+        badge = document.createElement("span");
+        badge.className = "status-badge";
+        link.insertBefore(badge, link.firstChild);
+      }
+
+      // Aplica o ícone e a classe corretos
+      if (isRead) {
+        badge.textContent = "✓";
+        badge.className = "status-badge read";
+      } else if (isCurrent) {
+        badge.textContent = "◐";
+        badge.className = "status-badge reading";
+        const parentLi = link.closest(".sidebar-item");
+        if (parentLi) parentLi.classList.add("is-reading");
+      } else {
+        badge.textContent = "○";
+        badge.className = "status-badge unread";
+      }
+    });
+
+    // Registra a leitura ao atingir o final da página
+    let markedAsRead = completedPages.includes(currentFile);
+
+    function checkScroll() {
+      if (markedAsRead) return;
+
+      const scrollPos = window.innerHeight + window.scrollY;
+      const threshold = document.documentElement.scrollHeight - 150;
+
+      if (scrollPos >= threshold) {
+        markedAsRead = true;
+        if (!completedPages.includes(currentFile)) {
+          completedPages.push(currentFile);
+          localStorage.setItem(storageKey, JSON.stringify(completedPages));
+        }
+
+        // Atualiza o ícone do link ativo imediatamente
+        sidebarLinks.forEach(link => {
+          if (cleanFilename(link.getAttribute("href")) === currentFile) {
+            const badge = link.querySelector(".status-badge");
+            if (badge) {
+              badge.textContent = "✓";
+              badge.className = "status-badge read";
+            }
+          }
+        });
+      }
+    }
+
+    window.addEventListener("scroll", checkScroll, { passive: true });
+    setTimeout(checkScroll, 300);
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initTracker);
+  } else {
+    initTracker();
+  }
+})();
+</script>

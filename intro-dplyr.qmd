@@ -1,0 +1,24 @@
+# Manipulação Essencial com dplyr
+
+## 1. O Conceito de Transformação Tabular
+Os microdados de políticas públicas exigem padronização antes de qualquer estimativa.
+
+## 2. Filtragem Condicional com filter()
+A função `filter()` seleciona linhas baseando-se em testes lógicos.
+
+```{r}
+#| message: false
+library(dplyr)
+
+# Exemplo conceitual com dados sintéticos
+dados <- tibble(
+  municipio = c("A", "B", "C"),
+  taxa_cobertura = c(0.82, 0.45, 0.91)
+)
+
+dados |> 
+  filter(taxa_cobertura >= 0.80)
+```
+
+## 3. Criação de Indicadores com mutate()
+Derivação de novas métricas a partir de variáveis brutas.

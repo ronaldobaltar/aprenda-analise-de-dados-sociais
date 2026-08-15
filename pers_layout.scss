@@ -1,0 +1,122 @@
+/*-- scss:defaults --*/
+$primary: #4A408E;          /* Violeta Persona */
+$secondary: #64748B;
+$body-bg: #F8FAFC;
+$body-color: #1E293B;
+$font-family-sans-serif: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+$headings-font-weight: 700;
+$border-radius: 8px;
+
+/*-- scss:rules --*/
+
+/* Layout Central com Respiro Estilo Roadmap Pack */
+.page-columns {
+  background-color: $body-bg;
+}
+
+#quarto-document-content {
+  background: #FFFFFF;
+  border: 1px solid rgba(0, 0, 0, 0.07);
+  border-radius: $border-radius;
+  padding: 2.5rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+}
+
+/* Customização do Menu Lateral Direito (TOC) com Status */
+#TOC {
+  border-left: 2px solid #E2E8F0;
+  padding-left: 1rem;
+}
+
+#TOC ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+#TOC li {
+  margin-bottom: 0.5rem;
+  position: relative;
+}
+
+#TOC li a {
+  color: #64748B;
+  text-decoration: none;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.2s ease;
+}
+
+/* 1. Status: NÃO LIDO (Padrão) */
+#TOC li a::before {
+  content: "○";
+  color: #94A3B8;
+  font-size: 0.85rem;
+  font-weight: bold;
+}
+
+/* 2. Status: LENDO (Tópico atual visível na tela) */
+#TOC li.topic-reading > a {
+  color: $primary !important;
+  font-weight: 600;
+}
+#TOC li.topic-reading > a::before {
+  content: "◐";
+  color: $primary;
+}
+
+/* 3. Status: LIDO (Concluído e persistido) */
+#TOC li.topic-read > a {
+  color: #334155;
+}
+#TOC li.topic-read > a::before {
+  content: "✓";
+  color: #10B981; /* Verde esmeralda de sucesso */
+  font-weight: 800;
+}
+
+/* =============================================================
+   MARCADORES DE STATUS ROBUSTOS NO MENU LATERAL (SIDEBAR)
+   ============================================================= */
+
+.sidebar-item-container {
+  display: flex !important;
+  align-items: center;
+}
+
+/* Badge de status injetado via DOM */
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.1rem;
+  margin-right: 0.45rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  line-height: 1;
+  flex-shrink: 0;
+  user-select: none;
+}
+
+/* 1. Não Lido */
+.status-badge.unread {
+  color: #94a3b8;
+}
+
+/* 2. Lendo */
+.status-badge.reading {
+  color: $primary !important;
+}
+
+/* 3. Lido */
+.status-badge.read {
+  color: #10b981 !important; /* Verde esmeralda */
+  font-weight: 900;
+}
+
+/* Destaca o texto do item que está sendo lido */
+.sidebar-item.is-reading > .sidebar-item-container a {
+  color: $primary !important;
+  font-weight: 700;
+}
