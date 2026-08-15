@@ -1,2 +1,2 @@
-# Infosoc
-Curso R
+# Aprenda Análise de Dados Sociais
+Conteúdo em desenvolvimento.
