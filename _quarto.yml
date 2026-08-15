@@ -3,6 +3,7 @@ project:
 
 website:
   title: "Análise de Dados Sociais"
+  favicon: "fav/favicon.ico"
   navbar:
     left:
       - text: "Início"

@@ -1,6 +1,6 @@
 ---
 title: "Análise de Dados Sociais"
-subtitle: "Aprenda de um jeito diferente"
+subtitle: "Fundamentos e Aplicações"
 page-layout: full
 ---
 
