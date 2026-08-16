@@ -33,6 +33,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
+<link href="./fav/favicon.ico" rel="icon">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -44,9 +45,9 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-845c23b38eaddc0f92fda52bfe77a8c8.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-7c97477859b67d44827d84366e7a2e9f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-b6acd3391751248e812174be01054ad2.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-7c97477859b67d44827d84366e7a2e9f.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-c48837f891d7a1784e851dac90a4d6f6.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-4b3f025f93cd93ef9c59d5ea0b937631.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-c48837f891d7a1784e851dac90a4d6f6.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -348,103 +349,177 @@ ul.task-list li input[type="checkbox"] {
 </main> <!-- /main -->
 <script>
 
-document.addEventListener("DOMContentLoaded", function () {
+(function() {
 
-  const headings = Array.from(document.querySelectorAll("main h2, main h3"));
+  function initTracker() {
 
-  const tocLinks = document.querySelectorAll("#TOC a");
+    const storageKey = "quarto_completed_pages";
 
-  const currentPage = window.location.pathname;
-
-  const storageKey = `progress_${currentPage}`;
+    let completedPages = JSON.parse(localStorage.getItem(storageKey) || "[]");
 
 
 
-  // Recupera tópicos já lidos salvos localmente
+    // Normaliza o nome do arquivo atual (ex: "/intro-dplyr.html" -> "intro-dplyr")
 
-  let readTopics = JSON.parse(localStorage.getItem(storageKey) || "[]");
+    function cleanFilename(path) {
 
+      if (!path) return "";
 
+      let name = path.split("/").pop() || "index";
 
-  // Aplica classes salvas no carregamento
-
-  tocLinks.forEach(link => {
-
-    const id = link.getAttribute("href") ? link.getAttribute("href").replace("#", "") : "";
-
-    const parentLi = link.closest("li");
-
-    if (readTopics.includes(id) && parentLi) {
-
-      parentLi.classList.add("topic-read");
+      return name.replace(/\.(html|qmd)$/, "").replace(/^$/, "index");
 
     }
 
-  });
+
+
+    const currentFile = cleanFilename(window.location.pathname);
 
 
 
-  // Observador de interseção para identificar o que está sendo lido
+    // Seleciona todos os links da barra lateral do Quarto
 
-  const observer = new IntersectionObserver((entries) => {
-
-    entries.forEach(entry => {
-
-      const id = entry.target.id;
-
-      const targetLink = document.querySelector(`#TOC a[href="#${id}"]`);
-
-      if (!targetLink) return;
-
-      const parentLi = targetLink.closest("li");
+    const sidebarLinks = document.querySelectorAll("#quarto-sidebar .sidebar-link, .sidebar-navigation .sidebar-link");
 
 
 
-      if (entry.isIntersecting) {
-
-        // Marcado como LENDO
-
-        document.querySelectorAll("#TOC li").forEach(li => li.classList.remove("topic-reading"));
-
-        if (parentLi) parentLi.classList.add("topic-reading");
+    if (!sidebarLinks.length) return;
 
 
 
-        // Ao rolar além da metade do bloco, registra como LIDO
+    sidebarLinks.forEach(link => {
 
-        if (!readTopics.includes(id)) {
+      const linkFile = cleanFilename(link.getAttribute("href"));
 
-          readTopics.push(id);
+      const isRead = completedPages.includes(linkFile);
 
-          localStorage.setItem(storageKey, JSON.stringify(readTopics));
+      const isCurrent = linkFile === currentFile;
 
-          if (parentLi) {
 
-            parentLi.classList.remove("topic-reading");
 
-            parentLi.classList.add("topic-read");
+      // Cria ou reutiliza o elemento de badge
 
-          }
+      let badge = link.querySelector(".status-badge");
 
-        }
+      if (!badge) {
+
+        badge = document.createElement("span");
+
+        badge.className = "status-badge";
+
+        link.insertBefore(badge, link.firstChild);
+
+      }
+
+
+
+      // Aplica o ícone e a classe corretos
+
+      if (isRead) {
+
+        badge.textContent = "✓";
+
+        badge.className = "status-badge read";
+
+      } else if (isCurrent) {
+
+        badge.textContent = "◐";
+
+        badge.className = "status-badge reading";
+
+        const parentLi = link.closest(".sidebar-item");
+
+        if (parentLi) parentLi.classList.add("is-reading");
+
+      } else {
+
+        badge.textContent = "○";
+
+        badge.className = "status-badge unread";
 
       }
 
     });
 
-  }, {
 
-    rootMargin: "0px 0px -40% 0px",
 
-    threshold: 0.2
+    // Registra a leitura ao atingir o final da página
 
-  });
+    let markedAsRead = completedPages.includes(currentFile);
 
 
 
-  headings.forEach(h => observer.observe(h));
+    function checkScroll() {
 
-});
+      if (markedAsRead) return;
+
+
+
+      const scrollPos = window.innerHeight + window.scrollY;
+
+      const threshold = document.documentElement.scrollHeight - 150;
+
+
+
+      if (scrollPos >= threshold) {
+
+        markedAsRead = true;
+
+        if (!completedPages.includes(currentFile)) {
+
+          completedPages.push(currentFile);
+
+          localStorage.setItem(storageKey, JSON.stringify(completedPages));
+
+        }
+
+
+
+        // Atualiza o ícone do link ativo imediatamente
+
+        sidebarLinks.forEach(link => {
+
+          if (cleanFilename(link.getAttribute("href")) === currentFile) {
+
+            const badge = link.querySelector(".status-badge");
+
+            if (badge) {
+
+              badge.textContent = "✓";
+
+              badge.className = "status-badge read";
+
+            }
+
+          }
+
+        });
+
+      }
+
+    }
+
+
+
+    window.addEventListener("scroll", checkScroll, { passive: true });
+
+    setTimeout(checkScroll, 300);
+
+  }
+
+
+
+  if (document.readyState === "loading") {
+
+    document.addEventListener("DOMContentLoaded", initTracker);
+
+  } else {
+
+    initTracker();
+
+  }
+
+})();
 
 </script>
 <script id="quarto-html-after-body" type="application/javascript">

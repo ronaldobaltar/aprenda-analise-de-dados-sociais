@@ -1,6 +1,7 @@
 ---
 title: "Análise de Dados Sociais"
 subtitle: "Fundamentos e Aplicações"
+author: "Ronaldo Baltar"
 page-layout: full
 ---
 
