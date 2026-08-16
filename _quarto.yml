@@ -24,7 +24,6 @@ format:
   html:
     theme:
       light: [cosmo, pers_layout.scss]
-      dark: [darkly]
     toc: true
     toc-location: right
     toc-title: "Conteúdo"
