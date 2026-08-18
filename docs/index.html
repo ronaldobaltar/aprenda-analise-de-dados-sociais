@@ -378,79 +378,53 @@ ul.task-list li input[type="checkbox"] {
 })();
 
 </script>
-<div class="comentarios-container" style="margin-top: 3.5rem; padding-top: 2rem;">
-
-  <h2>Comentários</h2>
-
-  <p style="font-weight: 500;">🐱💬 Tem alguma dúvida ou quer deixar um comentário? Use o espaço abaixo:
-
-    <br>(<i>Mas já vamos deixar combinado, <b>gentileza e respeito acima de tudo</b>, sempre!!!</i> 😊)<br>
-
-    <small>Precisa se cadastrar gratuitamente🦉</small>
-
-  </p>
+<div class="comentarios-secao" style="margin-top: 3.5rem; padding-top: 2rem; border-top: 1px solid rgba(0, 0, 0, 0.1);">
 
   
 
-  <div id="graphcomment"></div>
+  <!-- Acordeão Nativo -->
+
+  <details class="gc-accordion" id="gc-details">
+
+    <summary class="gc-summary">
+
+      <span class="gc-summary-title">💬 Espaço para Dúvidas e Ideias (Clique para deixar seu comentário)</span>
+
+    </summary>
+
+    
+
+    <div class="gc-content">
+
+      <p style="margin: 1rem 0; font-size: 0.9rem; color: var(--text-muted, #64748B);">
+
+        Gentileza acima de tudo, sempre! Participe das discussões e deixe sua contribuição:
+
+      </p>
+
+      
+
+      <!-- Container alvo do GraphComment -->
+
+      <div id="graphcomment"></div>
+
+    </div>
+
+  </details>
 
 
-
-  <script type="text/javascript">
-
-    var __semio__params = {
-
-      graphcommentId: "An-lise-de-Dados-Sociais",
-
-
-
-      behaviour: {
-
-        // Vincula a thread de comentários ao caminho único de cada página
-
-        uid: window.location.pathname
-
-      },
-
-    }
-
-
-
-    function __semio__onload() {
-
-      __semio__gc_graphlogin(__semio__params);
-
-    }
-
-
-
-    (function() {
-
-      var gc = document.createElement('script');
-
-      gc.type = 'text/javascript';
-
-      gc.async = true;
-
-      gc.onload = __semio__onload;
-
-      gc.defer = true;
-
-      gc.src = 'https://integration.graphcomment.com/gc_graphlogin.js?' + Date.now();
-
-      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(gc);
-
-    })();
-
-  </script>
 
 </div>
 
 
 
+<!-- Newsletter -->
+
+
+
 <div class="comentarios-container" style="margin-top: 3.5rem; padding-top: 2rem;">
 
-  <h2>Newsletter</h2>
+  <h4>Newsletter</h4>
 
 <p>Se quiser receber as novidades em seu e-mail, assine a newsletter "Análise de Dados Sociais". É gratuita e você pode cancelar a qualquer momento.</p>
 
@@ -468,12 +442,185 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<div style="font-size: 0.8em; color:rgb(52, 11, 90); flex; justify-content: center; align-items: center; text-align: center;">
+<div style="font-size: 0.8em; color:rgb(52, 11, 90);  justify-content: center; align-items: center; text-align: center;">
 
   Conteúdo criado e mantido pelo Prof. <a href="https://www.linkedin.com/in/ronaldobaltar/" target="_blank">Ronaldo Baltar</a>.
 
 </div>
 
+
+
+
+
+<!-- Estilização do Acordeão (Harmonizado com o Persona) -->
+
+<style>
+
+.gc-accordion {
+
+  border: 1px solid rgba(0, 0, 0, 0.1);
+
+  border-radius: 8px;
+
+  background-color: var(--container-bg, #ffffff);
+
+  overflow: hidden;
+
+  transition: all 0.2s ease;
+
+}
+
+
+
+html.quarto-dark .gc-accordion {
+
+  border: 1px solid rgba(255, 255, 255, 0.1);
+
+  background-color: #1E2533;
+
+}
+
+
+
+.gc-summary {
+
+  list-style: none;
+
+  cursor: pointer;
+
+  padding: 1rem 1.25rem;
+
+  font-weight: 600;
+
+  color: #4A408E;
+
+  display: flex;
+
+  align-items: center;
+
+  user-select: none;
+
+  background-color: rgba(74, 64, 142, 0.04);
+
+}
+
+
+
+.gc-summary::-webkit-details-marker {
+
+  display: none;
+
+}
+
+
+
+.gc-summary:hover {
+
+  background-color: rgba(74, 64, 142, 0.08);
+
+}
+
+
+
+.gc-content {
+
+  padding: 1.25rem;
+
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
+
+}
+
+
+
+html.quarto-dark .gc-content {
+
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+
+}
+
+</style>
+
+
+
+<!-- Lógica de Lazy Load do Script -->
+
+<script type="text/javascript">
+
+(function() {
+
+  var details = document.getElementById("gc-details");
+
+  var loaded = false;
+
+
+
+  if (!details) return;
+
+
+
+  // Escuta o evento nativo 'toggle' do acordeão
+
+  details.addEventListener("toggle", function() {
+
+    // Carrega apenas quando estiver aberto e apenas na primeira vez
+
+    if (details.open && !loaded) {
+
+      loaded = true;
+
+
+
+      /* Variáveis de Configuração do GraphComment */
+
+      window.__semio__params = {
+
+        graphcommentId: "An-lise-de-Dados-Sociais", // Seu site shortname
+
+        behaviour: {
+
+          uid: window.location.pathname // UID único por página
+
+        }
+
+      };
+
+
+
+      window.__semio__onload = function() {
+
+        if (typeof __semio__gc_graphlogin === "function") {
+
+          __semio__gc_graphlogin(window.__semio__params);
+
+        }
+
+      };
+
+
+
+      // Injeta o script no DOM em tempo de execução
+
+      var gc = document.createElement("script");
+
+      gc.type = "text/javascript";
+
+      gc.async = true;
+
+      gc.onload = window.__semio__onload;
+
+      gc.defer = true;
+
+      gc.src = "https://integration.graphcomment.com/gc_graphlogin.js?" + Date.now();
+
+      (document.getElementsByTagName("head")[0] || document.getElementsByTagName("body")[0]).appendChild(gc);
+
+    }
+
+  });
+
+})();
+
+</script>
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";

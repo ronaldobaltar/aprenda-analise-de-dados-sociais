@@ -35,5 +35,5 @@ format:
     smooth-scroll: true
     include-after-body: 
       - tracker.html
-      - comentarios.html
+      - comenta-e-newsletter.html
 
