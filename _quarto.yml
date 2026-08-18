@@ -31,4 +31,7 @@ format:
     toc-title: "Conteúdo"
     toc-depth: 3
     smooth-scroll: true
-    include-after-body: tracker.html
+    include-after-body: 
+      - tracker.html
+      - comentarios.html
+      

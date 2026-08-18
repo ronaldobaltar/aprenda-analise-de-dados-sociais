@@ -22,7 +22,7 @@ $border-radius: 8px;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
 }
 
-/* Customização do Menu Lateral Direito (TOC) com Status */
+/* Customização do Menu Lateral Direito (TOC) */
 #TOC {
   border-left: 2px solid #E2E8F0;
   padding-left: 1rem;
@@ -54,26 +54,6 @@ $border-radius: 8px;
   color: #94A3B8;
   font-size: 0.85rem;
   font-weight: bold;
-}
-
-/* 2. Status: LENDO (Tópico atual visível na tela) */
-#TOC li.topic-reading > a {
-  color: $primary !important;
-  font-weight: 600;
-}
-#TOC li.topic-reading > a::before {
-  content: "◐";
-  color: $primary;
-}
-
-/* 3. Status: LIDO (Concluído e persistido) */
-#TOC li.topic-read > a {
-  color: #334155;
-}
-#TOC li.topic-read > a::before {
-  content: "✓";
-  color: #10B981; /* Verde esmeralda de sucesso */
-  font-weight: 800;
 }
 
 /* =============================================================

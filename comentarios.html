@@ -1,0 +1,32 @@
+<div class="comentarios-container" style="margin-top: 3.5rem; padding-top: 2rem; border-top: 1px solid rgba(0,0,0,0.1);">
+  <p style="font-weight: 500;">😽💬 Tem alguma dúvida ou quer deixar um comentário, use o espaço abaixo:
+    <br/>(<i>e já vamos deixar combinado aqui, <b>gentileza acima de tudo</b>, sempre!!</i> 😊)
+  </p>
+  
+  <div id="graphcomment"></div>
+
+  <script type="text/javascript">
+    var __semio__params = {
+      graphcommentId: "An-lise-de-Dados-Sociais",
+
+      behaviour: {
+        // Vincula a thread de comentários ao caminho único de cada página
+        uid: window.location.pathname
+      },
+    }
+
+    function __semio__onload() {
+      __semio__gc_graphlogin(__semio__params);
+    }
+
+    (function() {
+      var gc = document.createElement('script');
+      gc.type = 'text/javascript';
+      gc.async = true;
+      gc.onload = __semio__onload;
+      gc.defer = true;
+      gc.src = 'https://integration.graphcomment.com/gc_graphlogin.js?' + Date.now();
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(gc);
+    })();
+  </script>
+</div>
