@@ -7,7 +7,6 @@ page-layout: full
 
 ::: {.hero-banner}
 Bem-vindo(a) aos fundamentos da Análise de Dados Sociais com R.
-
 :::
 
 ## Sobre o conteúdo
