@@ -1,0 +1,75 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Fundamentos da Análise de Dados Sociais",
+    "section": "",
+    "text": "Bem-vindo ao portal de trilhas interativas de Análise de Dados Sociais com R.",
+    "crumbs": [
+      "Início",
+      "Fundamentos da Análise de Dados Sociais"
+    ]
+  },
+  {
+    "objectID": "index.html#escolha-sua-trilha-de-aprendizado",
+    "href": "index.html#escolha-sua-trilha-de-aprendizado",
+    "title": "Fundamentos da Análise de Dados Sociais",
+    "section": "Escolha sua Trilha de Aprendizado",
+    "text": "Escolha sua Trilha de Aprendizado\n…",
+    "crumbs": [
+      "Início",
+      "Fundamentos da Análise de Dados Sociais"
+    ]
+  },
+  {
+    "objectID": "intro-dplyr.html",
+    "href": "intro-dplyr.html",
+    "title": "Manipulação Essencial com dplyr",
+    "section": "",
+    "text": "Os microdados de políticas públicas exigem padronização antes de qualquer estimativa.\n\n\n\nA função filter() seleciona linhas baseando-se em testes lógicos.\n\nlibrary(dplyr)\n\n# Exemplo conceitual com dados sintéticos\ndados &lt;- tibble(\n  municipio = c(\"A\", \"B\", \"C\"),\n  taxa_cobertura = c(0.82, 0.45, 0.91)\n)\n\ndados |&gt; \n  filter(taxa_cobertura &gt;= 0.80)\n\n# A tibble: 2 × 2\n  municipio taxa_cobertura\n  &lt;chr&gt;              &lt;dbl&gt;\n1 A                   0.82\n2 C                   0.91\n\n\n\n\n\nDerivação de novas métricas a partir de variáveis brutas.",
+    "crumbs": [
+      "Início",
+      "Manipulação Essencial com dplyr"
+    ]
+  },
+  {
+    "objectID": "intro-dplyr.html#o-conceito-de-transformação-tabular",
+    "href": "intro-dplyr.html#o-conceito-de-transformação-tabular",
+    "title": "Manipulação Essencial com dplyr",
+    "section": "",
+    "text": "Os microdados de políticas públicas exigem padronização antes de qualquer estimativa.",
+    "crumbs": [
+      "Início",
+      "Manipulação Essencial com dplyr"
+    ]
+  },
+  {
+    "objectID": "intro-dplyr.html#filtragem-condicional-com-filter",
+    "href": "intro-dplyr.html#filtragem-condicional-com-filter",
+    "title": "Manipulação Essencial com dplyr",
+    "section": "",
+    "text": "A função filter() seleciona linhas baseando-se em testes lógicos.\n\nlibrary(dplyr)\n\n# Exemplo conceitual com dados sintéticos\ndados &lt;- tibble(\n  municipio = c(\"A\", \"B\", \"C\"),\n  taxa_cobertura = c(0.82, 0.45, 0.91)\n)\n\ndados |&gt; \n  filter(taxa_cobertura &gt;= 0.80)\n\n# A tibble: 2 × 2\n  municipio taxa_cobertura\n  &lt;chr&gt;              &lt;dbl&gt;\n1 A                   0.82\n2 C                   0.91",
+    "crumbs": [
+      "Início",
+      "Manipulação Essencial com dplyr"
+    ]
+  },
+  {
+    "objectID": "intro-dplyr.html#criação-de-indicadores-com-mutate",
+    "href": "intro-dplyr.html#criação-de-indicadores-com-mutate",
+    "title": "Manipulação Essencial com dplyr",
+    "section": "",
+    "text": "Derivação de novas métricas a partir de variáveis brutas.",
+    "crumbs": [
+      "Início",
+      "Manipulação Essencial com dplyr"
+    ]
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "About this site"
+  }
+]

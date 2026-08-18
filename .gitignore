@@ -1,2 +1,12 @@
 /.quarto/
 **/*.quarto_ipynb
+# Arquivos de cache e temporários do Quarto
+/.quarto/
+
+# Pasta de compilação local
+/_site/
+
+# Arquivos de ambiente e histórico do R / Positron
+.Rhistory
+.RData
+.Rproj.user/
