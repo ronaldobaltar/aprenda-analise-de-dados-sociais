@@ -4,7 +4,7 @@
     "href": "index.html",
     "title": "Fundamentos da Análise de Dados Sociais",
     "section": "",
-    "text": "Bem-vindo ao portal de trilhas interativas de Análise de Dados Sociais com R.",
+    "text": "Bem-vindo(a) aos fundamentos da Análise de Dados Sociais com R.",
     "crumbs": [
       "Início",
       "Fundamentos da Análise de Dados Sociais"
@@ -71,5 +71,16 @@
     "title": "About",
     "section": "",
     "text": "About this site"
+  },
+  {
+    "objectID": "index.html#sobre-o-conteúdo",
+    "href": "index.html#sobre-o-conteúdo",
+    "title": "Fundamentos da Análise de Dados Sociais",
+    "section": "Sobre o conteúdo",
+    "text": "Sobre o conteúdo\n\nConteúdo em construção\n\n…",
+    "crumbs": [
+      "Início",
+      "Fundamentos da Análise de Dados Sociais"
+    ]
   }
 ]

@@ -6,8 +6,11 @@ page-layout: full
 ---
 
 ::: {.hero-banner}
-Bem-vindo ao portal de trilhas interativas de Análise de Dados Sociais com R.
+Bem-vindo(a) aos fundamentos da Análise de Dados Sociais com R.
+
 :::
 
-## Escolha sua Trilha de Aprendizado
+## Sobre o conteúdo
+>Conteúdo em construção
+
 ...
