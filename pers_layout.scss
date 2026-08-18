@@ -100,3 +100,56 @@ $border-radius: 8px;
   color: $primary !important;
   font-weight: 700;
 }
+
+/* =============================================================
+   CÓDIGO INLINE ESTILO GITHUB (SOBREPOSIÇÃO FORÇADA)
+   ============================================================= */
+
+/* Modo Claro: Estilo GitHub Light */
+body:not(.quarto-dark) :not(pre) > code,
+html:not(.quarto-dark) :not(pre) > code {
+  background-color: rgba(175, 184, 193, 0.2) !important; /* Cinza suave */
+  color: #24292f !important;                             /* Texto grafite escuro */
+  border: 1px solid rgba(27, 31, 36, 0.15) !important;
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Monaco, Consolas, monospace !important;
+  font-size: 0.85em !important;
+  font-weight: 500 !important;
+  padding: 0.18em 0.4em !important;
+  margin: 0 0.15em !important;
+  border-radius: 6px !important;
+  box-shadow: none !important;
+  text-shadow: none !important;
+}
+
+/* Modo Escuro: Estilo GitHub Dark */
+body.quarto-dark :not(pre) > code,
+html.quarto-dark :not(pre) > code {
+  background-color: rgba(110, 118, 129, 0.3) !important;
+  color: #e6edf3 !important;
+  border: 1px solid rgba(240, 246, 252, 0.15) !important;
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Monaco, Consolas, monospace !important;
+  font-size: 0.85em !important;
+  padding: 0.18em 0.4em !important;
+  margin: 0 0.15em !important;
+  border-radius: 6px !important;
+}
+
+/* =============================================================
+   CANTOS ARREDONDADOS NOS BLOCOS DE CÓDIGO (DRACULA)
+   ============================================================= */
+
+/* Container externo do bloco de código */
+div.sourceCode {
+  border-radius: 10px !important;
+  overflow: hidden !important;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  margin: 1.5rem 0;
+}
+
+/* Bloco pré-formatado interno */
+div.sourceCode pre,
+div.sourceCode pre.sourceCode {
+  border-radius: 10px !important;
+  margin-bottom: 0 !important;
+  padding: 1.2rem 1.4rem !important;
+}
