@@ -10,6 +10,6 @@ Bem-vindo(a) aos fundamentos da Análise de Dados Sociais com R.
 :::
 
 ## Sobre o conteúdo
->Conteúdo em construção
+>Conteúdo em construção!!
 
 ...
